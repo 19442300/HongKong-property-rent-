@@ -1,0 +1,14 @@
+<!--occupants.ejs-->
+<div class="container">
+        <p> <%= estate.PropertyTitle %> 租客信息</p>
+    <hr>
+    <% estate.rentBy.forEach( function(model) { %>
+
+    <%= model.username %>
+    <hr>
+    <% }); %>
+
+
+
+
+</div>

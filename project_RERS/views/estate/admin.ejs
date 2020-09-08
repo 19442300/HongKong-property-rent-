@@ -1,0 +1,19 @@
+<!--admin.ejs-->
+<div class="container">
+    <table class="table">
+       
+        <% estates.forEach( function(model) { %>
+        <tr>
+            <td><%= model.id %></td>
+            <td><%= model.PropertyTitle %></td>
+            <td><%= model.estate %></td>
+            <td><a href="/estate/<%= model.id %>/rentBy">Occupants</a></td>
+            <td><a href="/estate/update/<%= model.id %>">Edit</a></td>
+            <td><form action="/estate/delete/<%= model.id %>"  method="POST">
+            <button class="btn btn-danger">delete</button>
+            </form></td>
+         
+        </tr>
+        <% }); %>
+    </table>
+</div>

@@ -1,0 +1,79 @@
+<!--view.ejs-->
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title"> <%= estate.PropertyTitle %></h5>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <img class="card-img-top" src="<%= estate.ImageURL %>" alt="Card image cap">
+            </div>
+            <div class=" col-6">
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            Estate: <%= estate.estate %>
+                        </li>
+                        <li class="list-group-item">
+                            Gross Area: <%= estate.GrossArea %> sq feet
+                        </li>
+                        <li class="list-group-item" style="height: 50px;">
+                            Rent: $<%= estate.rent %>
+                        </li>
+                        <li class="list-group-item">
+                            Bedrooms: <%= estate.bedrooms %>
+                        </li>
+                        <li class="list-group-item">
+                            Expected Tenants: <%= estate.ExpectedTenants %>
+                        </li>
+                        <li class="list-group-item">
+                            Created: <%= estate.Created %>
+                        </li>
+                        <li class="list-group-item">
+                            Updated: <%= estate.Updated %>
+                        </li>
+                    </ul>
+                </div>
+                <br>
+                
+                <%if (req.session.role=='client') {%>
+                <% renter.rentBy.forEach( function(model) { %>
+
+                <% if(model.username==req.session.username){%>
+                <form action="/user/<%= req.session.userid %>/rent/remove/<%= estate.id %>" method="POST">
+                    <button style='width: 100px;' class="btn btn-primary">Move-out</button>
+                </form>
+                <% compare =1;%>
+                <%}%>
+                        <% }); %>
+
+
+                       
+                <%if(estate.ExpectedTenants >num_renter&&compare==0){%>
+
+                <form action="/user/<%= req.session.userid %>/rent/add/<%= estate.id %>" method="POST">
+                    <button style='width: 100px;' class="btn btn-primary">Co-rent</button>
+                </form>
+                <%}%>
+                <%}%>
+
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<script>
+
+
+
+</script>

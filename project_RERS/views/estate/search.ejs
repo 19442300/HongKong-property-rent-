@@ -1,0 +1,100 @@
+<!--search.ejs-->
+<div class="container">
+    <form action="/estate/search/?page=1/" method="GET">
+        <div class="row">
+            <% estates.forEach( function(model) { %>
+            <div style="padding: 20px" class="card col-md-4">
+                <img src="<%= model.ImageURL %>" class="card-img-top" alt="estate_img">
+                <a href="/estate/view/<%= model.id %>">
+                    <h5 class="card-title"><%= model.PropertyTitle %></h5>
+                </a>
+
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Estate:<%= model.estate %></li>
+                        <li class="list-group-item">Gross Area:<%= model.GrossArea %>sq feet</li>
+                        <li class="list-group-item">Rent:$<%= model.rent %></li>
+                    </ul>
+                </div>
+
+            </div>
+            <% }); %>
+
+            <!-- <div class="col-md-4">.col-md-4</div> -->
+            <div class="col-md-4">
+                <% const current = parseInt(req.query.page) || 1; %>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link"
+                                href="/estate/search/?page=<%= Math.max(current-1, 1) %>&<%= a%>">Previous</a>
+                        </li>
+
+                        <% for (i = 1; i <= count; i++) { %>
+                        <li class=" page-item">
+                            <a class="page-link" href="/estate/search/?page=<%= i %>&<%= a%>"><%= i %></a>
+                        </li>
+                        <% } %>
+
+                        <li class="page-item">
+                            <a class="page-link"
+                                href="/estate/search/?page=<%= Math.min(current+1, count) %>&<%= a%>">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="form-group">
+                    <label class="form-inline">
+                        Estate:&nbsp;&nbsp;
+                        <select name="estate" class="form-control">
+                            <option value="">Please select</option>
+                            <option value="Festival City">Festival City</option>
+                            <option value="Tin Ma Court">Tin Ma Court</option>
+                            <option value="City One Shatin">City One Shatin</option>
+                        </select></label>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-inline">Bedrooms:&nbsp;&nbsp;
+                        <input type="number" class="form-control" name="bedrooms">
+                    </label>
+                </div>
+                <p>Area(Sq feet):</p>
+                <div class="form-group row">
+
+                    <div class="col-6">
+                        <label style="display: inline-flex"> Min:&nbsp;&nbsp;
+                            <input type="number" class="form-control" name="AreaMin">
+                        </label>
+                    </div>
+                    <div class="col-6">
+                        <label style="display: inline-flex"> Max:&nbsp;&nbsp;
+                            <input type="number" class="form-control" name="AreaMax">
+                        </label>
+                    </div>
+                </div>
+
+                <p>Rent(HK$):</p>
+                <div class="form-group row">
+
+                    <div class="col-6">
+                        <span style="display: inline-flex"> Min:&nbsp;&nbsp;
+                            <input type="number" class="form-control" name="RentMin">
+                        </span></div>
+                    <div class="col-6">
+                        <span style="display: inline-flex"> Max:&nbsp;&nbsp;
+                            <input type="number" class="form-control" name="RentMax">
+                        </span></div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Search</button>
+
+            </div>
+        </div>
+
+
+
+
+
+    </form>
+</div>

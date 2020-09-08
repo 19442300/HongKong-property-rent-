@@ -1,0 +1,27 @@
+<!--index.ejs-->
+<div class="container">
+    <div class="row">
+        <% estates.forEach( function(model) { %>
+        <div style="padding: 30px" class="card col-md-6">
+            <a href="/estate/view/<%= model.id %>">
+                <h5 class="card-title"><%= model.PropertyTitle %></h5>
+            </a>
+            <div class="row">
+                <div class="col-3">
+                    <img src="<%= model.ImageURL %>" class="card-img-top" alt="estate_img">
+                </div>
+                <div class="col-9">
+                    <div class="card">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Estate:<%= model.estate %></li>
+                            <li class="list-group-item">Gross Area:<%= model.GrossArea %>sq feet</li>
+                            <li class="list-group-item">Rent:$<%= model.rent %></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <% }); %>
+    </div>
+</div>
